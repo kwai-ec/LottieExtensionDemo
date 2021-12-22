@@ -22,7 +22,7 @@
     [controller addAction:[UIAlertAction actionWithTitle:@"close" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [controller dismissViewControllerAnimated:YES completion:nil];
     }]];
-    [[[[[UIApplication sharedApplication]delegate]window]rootViewController] presentViewController:controller animated:YES completion:nil];
+    [[[[UIApplication sharedApplication]keyWindow]rootViewController] presentViewController:controller animated:YES completion:nil];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder

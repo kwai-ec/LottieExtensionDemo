@@ -20,7 +20,11 @@
     // 方案1.将自定义替换的同层layer缓存起来，触摸测试时，只在缓存的替换自定义View中做point包含判断
     // 问题：！！！如果自定义view之上遮盖了可见layer，自定义view错误响应点击
     NSArray *reversedItems = [[self.mixLayers reverseObjectEnumerator] allObjects];
-        for (CALayer *layer in reversedItems) {
+        for (NSValue *value in reversedItems) {
+            CALayer *layer = [value nonretainedObjectValue];
+            if (![layer isKindOfClass:[CALayer class]]) {
+                continue;
+            }
             CGPoint newPoint = [self.layer.presentationLayer convertPoint:point toLayer:layer.presentationLayer];
             CALayer *origLayer = layer.superlayer.superlayer;
             BOOL ignore4Opacity = NO;
